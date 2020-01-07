@@ -3,6 +3,7 @@ package com.rzepecki.spring5recipeapp.domain;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
 public class Ingredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,6 +12,16 @@ public class Ingredient {
     private BigDecimal amount;
     @ManyToOne
     private Recipe recipe;
+    @OneToOne(fetch = FetchType.EAGER) //relacja jednokierunkowa
+    private UnitOfMeasure unitOfMeasure;
+
+    public UnitOfMeasure getUnitOfMeasure() {
+        return unitOfMeasure;
+    }
+
+    public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
+        this.unitOfMeasure = unitOfMeasure;
+    }
 
     public Recipe getRecipe() {
         return recipe;

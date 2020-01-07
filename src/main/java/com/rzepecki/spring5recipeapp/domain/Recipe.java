@@ -8,7 +8,6 @@ public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String description;
     private Integer prepTime;
     private Integer cockTime;
@@ -16,14 +15,35 @@ public class Recipe {
     private String source;
     private String url;
     private String directions;
-    //private Difficulty dificulty;
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty dificulty;
     @Lob
     private Byte[] image;
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredientSet;
+    @ManyToMany
+    @JoinTable(name= "recipe_category",
+            joinColumns = @JoinColumn(name= "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> category;
 
+    public Set<Category> getCategory() {
+        return category;
+    }
+
+    public void setCategory(Set<Category> category) {
+        this.category = category;
+    }
+
+    public Difficulty getDificulty() {
+        return dificulty;
+    }
+
+    public void setDificulty(Difficulty dificulty) {
+        this.dificulty = dificulty;
+    }
 
     public Set<Ingredient> getIngredientSet() {
         return ingredientSet;
