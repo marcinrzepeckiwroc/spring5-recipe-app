@@ -1,6 +1,7 @@
 package com.rzepecki.spring5recipeapp.converters;
 
 import com.rzepecki.spring5recipeapp.commands.RecipeCommands;
+import com.rzepecki.spring5recipeapp.domain.Category;
 import com.rzepecki.spring5recipeapp.domain.Recipe;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
